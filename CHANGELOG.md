@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Trade: Buy
     - Trade: Sell
     - Trade: Fee
+    - Import: Portfolio: Takes in a specific format of CSV
+    - Update: Portfolio: Update Portfolio
+    - Export: Portfolio: Export in CSV
 
 ## [0.1.0] - 2021-03-27
 ### Added

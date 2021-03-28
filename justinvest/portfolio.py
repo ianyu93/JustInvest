@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
 '''
@@ -68,6 +68,12 @@ from .rulesets import set_leverage
 def valid_date(date_text):
     '''
     A function that validates if the given date_text is in the desired format.
+
+    ...
+
+    Parameters
+    ----------
+    date_text : string
     '''
     try: 
         datetime.datetime.strptime(date_text, '%Y-%m-%d')
@@ -75,10 +81,10 @@ def valid_date(date_text):
     except ValueError:
         raise ValueError("Wrong format! Date must be in YYYY-MM-DD format")
 
-class Portfolio:
+class Account:
     '''
-    Portfolio class is a portfolio of the user. 
-    User interacts with the class to construct and update portfolio.
+    Account class is an investment account of the user. 
+    User interacts with the class to construct and update an account.
 
     ...
 
@@ -88,8 +94,13 @@ class Portfolio:
         
     Methods
     -------
-    deposit(deposit)
+    deposit(deposit) : int or float
+
+    withdraw(withdraw): init or float
+
+    search(*args): *args
     '''
+    
     def __init__(self, cash):
         '''
         User must start the instance with a balance
@@ -98,11 +109,14 @@ class Portfolio:
 
         Parameters
         ----------
-        balance : int or float
+        cash : int or float
         '''
         assert isinstance(cash, (int, float)), "balance parameter must be Int or Float."
         self.balance = cash
 
+    ########################   
+    # Portfolio Management #
+    ########################
     def deposit(self, deposit):
         '''
         Increase cash with a deposit
@@ -122,16 +136,17 @@ class Portfolio:
 
         ...
 
-        Attributes
+        Parameters
         ----------
-        deposit : int or float
+        withdraw : int or float
         '''
         assert isinstance(withdraw, (int, float)), "withdraw parameter must be Int or Float."
         
         self.cash -= withdraw
-    
 
-
+    ###########
+    # Trading #
+    ###########
     def search(self, *args):
         '''
         Queries result from Yahoo! Finance autocomplete API and returns a Pandas Dataframe.
@@ -148,7 +163,7 @@ class Portfolio:
 
             # Query with the keyword
             url = f"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query={query}&region=1&lang=en"
-
+            
             # Get the result in JSON format
             result = requests.get(url).json()
 
@@ -157,6 +172,9 @@ class Portfolio:
 
         # Return a concatenated Pandas Dataframe of results list
         return pd.concat(results)
+    
+    
+
 
 
 
