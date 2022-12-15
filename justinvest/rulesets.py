@@ -62,11 +62,10 @@ If the Library as you received it specifies that a proxy can decide whether futu
 
 def set_leverage(balance):
     if balance <= 1000000:
-        leverage = 0.5
+        return 0.5
     elif balance <= 20000000:
-        leverage = 0.25
+        return 0.25
     elif balance <= 30000000:
-        leverage = 0.10
-    elif balance > 30000000:
-        leverage = 0.03
-    return leverage
+        return 0.10
+    else:
+        return 0.03
