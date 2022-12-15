@@ -163,12 +163,12 @@ class Account:
 
             # Query with the keyword
             url = f"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query={query}&region=1&lang=en"
-            
+
             # Get the result in JSON format
             result = requests.get(url).json()
 
             # Append to the results list
-            results.append(pd.DataFrame([x for x in result['ResultSet']['Result']]))
+            results.append(pd.DataFrame(list(result['ResultSet']['Result'])))
 
         # Return a concatenated Pandas Dataframe of results list
         return pd.concat(results)
